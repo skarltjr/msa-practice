@@ -1,0 +1,6 @@
+rootProject.name = 'myMsa'
+include 'api-gateway'
+include 'core'
+include 'service-discovery'
+include 'user-service'
+
