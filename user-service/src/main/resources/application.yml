@@ -14,7 +14,7 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     show-sql: true
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: create-drop
     defer-datasource-initialization: true
     database-platform: org.hibernate.dialect.H2Dialect
 # 유레카 서버에 등록된 인스턴스는 이름이 있다.
