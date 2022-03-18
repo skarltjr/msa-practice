@@ -3,4 +3,5 @@ include 'api-gateway'
 include 'core'
 include 'service-discovery'
 include 'user-service'
+include 'article-service'
 

@@ -22,6 +22,16 @@ spring:
                 message: Base LoggerFilter
                 preLogger: true
                 postLogger: true
+        - id: article-service
+          uri: lb://ARTICLE-SERVICE
+          predicates:
+            - Path=/articles/**
+          filters:
+            - name: LoggingFilter
+              args:
+                message: Base LoggerFilter
+                preLogger: true
+                postLogger: true
 eureka:
   client:
     register-with-eureka: true
