@@ -5,6 +5,7 @@ import com.msa.domain.model.User;
 import com.msa.infrastructure.jpaRepository.JpaUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -24,5 +25,15 @@ public class UserRepositoryAdapter implements UserRepository {
     @Override
     public User findByIdAndUsername(Long id, String userName) {
         return jpaUserRepository.findByIdAndUsername(id, userName);
+    }
+
+    @Override
+    public User findById(Long id) {
+        Optional<User> user = jpaUserRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new RuntimeException("유저 없음!");
+        } else {
+            return user.get();
+        }
     }
 }
