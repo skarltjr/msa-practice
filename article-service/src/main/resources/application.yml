@@ -1,0 +1,28 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: article-service
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    name: sa
+    password:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: create-drop
+    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.H2Dialect
+# 유레카 서버에 등록된 인스턴스는 이름이 있다.
+# 중요한 것은 각 인스턴스는 서버가 인식할 수 있도록 유일한 ID를 보내야만 한다.
+# 스프링 클라우드 유레카는 다음과 같은 조합으로 식별자를 자동으로 생성한다.
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka # Eureka Server 위치
