@@ -1,9 +1,11 @@
 package com.msa.infrastructure;
 
 import com.msa.domain.UserRepository;
+import com.msa.domain.exception.UserNotFoundException;
 import com.msa.domain.model.User;
 import com.msa.infrastructure.jpaRepository.JpaUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import java.util.Optional;
 
@@ -31,7 +33,7 @@ public class UserRepositoryAdapter implements UserRepository {
     public User findById(Long id) {
         Optional<User> user = jpaUserRepository.findById(id);
         if (user.isEmpty()) {
-            throw new RuntimeException("유저 없음!");
+            throw new UserNotFoundException(HttpStatus.NOT_FOUND.value(),id + "에 해당하는 유저가 없습니다.");
         } else {
             return user.get();
         }

@@ -16,7 +16,7 @@ public class InternalUserController {
 
     @PostMapping("{id}")
     private UserDto checkUserVerification(@PathVariable Long id) {
-        // 여기라면 application - domain - infra를 걸쳐서 가져와야하는가
         return userFacade.verifyUser(id);
     }
+
 }
